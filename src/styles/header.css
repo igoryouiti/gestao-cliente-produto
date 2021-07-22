@@ -1,0 +1,19 @@
+h1 {
+  font-size: 1.6rem;
+}
+
+.header{
+  border: 1px solid darkblue;
+  width: 100vw;
+  height: 15vh;
+}
+
+.button-container {
+  
+  display: flex;
+  align-items: center;
+}
+
+.button-container button{
+  height: 1.6rem;
+}
