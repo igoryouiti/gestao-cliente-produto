@@ -3,4 +3,5 @@ export default interface Product {
   name: String;
   description: String;
   imageAddress: String;
+  provider: String;
 }
