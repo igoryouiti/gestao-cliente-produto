@@ -4,8 +4,8 @@ export default interface Client {
   id: number;
   name: String;
   email: String;
-  address: Address;
-  telefone: number;
-  birthDay: Date;
+  telephone: number;
+  birthday: String;
   cpf: number;
+  address: Address;
 }

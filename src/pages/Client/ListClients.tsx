@@ -2,6 +2,10 @@
 
 export default function ListClients() {
   return (
-    <>List Client</>
+    <div>
+      Lista Clientes
+      <label>ID: XX</label>
+      <label>Nome: Nome X</label>
+    </div>
   )
 };

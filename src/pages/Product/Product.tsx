@@ -10,6 +10,10 @@ export default function Product() {
         <label>Fornecedor: </label>
         <label>ID: </label>
       </div>
+      <div>
+        <button>Editar</button>
+        <button>Deletar</button>
+      </div>
     </div>
   )
 }

@@ -22,6 +22,10 @@ export default function Client() {
         <label>CEP: </label>
         <label>ID: </label>
       </div>
+      <div>
+        <button>Editar</button>
+        <button>Deletar</button>
+      </div>
     </div>
   )
 }

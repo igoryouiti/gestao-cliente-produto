@@ -1,10 +1,21 @@
-
+import { useHistory } from 'react-router-dom';
 
 export default function ClientManagement() {
+
+  const history = useHistory();
+
+  function handleButtonCreateClient() {
+    history.push('/client/create')
+  };
+
+  function handleButtonListClients() {
+    history.push('/clients')
+  };
+
   return (
     <div>
-      <button>Cadastrar</button>
-      <button>Listar</button>
+      <button type="button" onClick={handleButtonCreateClient}>Cadastrar</button>
+      <button type="button" onClick={handleButtonListClients}>Listar</button>
     </div>
   );
 }

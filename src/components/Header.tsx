@@ -6,11 +6,11 @@ export default function Header() {
 
   const history = useHistory();
 
-  function handleButtonClientes() {
+  function handleButtonClients() {
     history.push('/clients/management');
   }
 
-  function handleButtonProdutos() {
+  function handleButtonProducts() {
     history.push('/products/management');
   }
 
@@ -18,8 +18,8 @@ export default function Header() {
     <div className="header">
       <h1>Gestão de Cliente e Produtos</h1>
       <div className="button-container">
-        <button type="button" onClick={handleButtonClientes}>Clientes</button>
-        <button type="button" onClick={handleButtonProdutos}>Produtos</button>
+        <button type="button" onClick={handleButtonClients}>Clientes</button>
+        <button type="button" onClick={handleButtonProducts}>Produtos</button>
         <button type="button">Apagar Tudo</button>
       </div>
     </div >

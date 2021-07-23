@@ -6,5 +6,5 @@ export default interface Address {
   neighborhood: string;
   city: string;
   state: string;
-  cep: number;
+  cep: string;
 }
