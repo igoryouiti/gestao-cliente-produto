@@ -40,7 +40,7 @@ export default function Input({ name, label, ...rest }: InputProps) {
         {...rest}
       />
 
-      {error && <span>{error}</span>}
+      {error && <span style={{ color: "#f00" }}>{error}</span>}
     </>
   )
 }

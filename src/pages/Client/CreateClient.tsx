@@ -1,5 +1,5 @@
-import React, { useRef } from 'react'
-import { SubmitHandler, FormHandles } from '@unform/core'
+import { useRef } from 'react'
+import { SubmitHandler, FormHandles, Scope } from '@unform/core'
 import { Form } from '@unform/web';
 import Client from '../../models/Client';
 import Input from '../../components/Form/Input';
@@ -9,14 +9,18 @@ import Input from '../../components/Form/Input';
 export default function CreateClient() {
 
   const formRef = useRef<FormHandles>(null)
-  const handleSubmit: SubmitHandler<Client> = data => {
+
+  const handleSubmit: SubmitHandler<Client> = (data) => {
     console.log(data)
+    const client: Client = data;
+
+    console.log(client)
   }
 
   return (
     <div>
       Cadastro Cliente
-      <Form onSubmit={handleSubmit}>
+      <Form ref={formRef} onSubmit={handleSubmit}>
         <div className="client-form">
           <label>Nome</label>
           <Input name="name" />
@@ -29,22 +33,24 @@ export default function CreateClient() {
           <label>CPF</label>
           <Input name="cpf" />
         </div>
-        <div className="client-form">
-          <label>Rua</label>
-          <Input name="address.street" />
-          <label>Número</label>
-          <Input name="address.number" />
-          <label>Complemento</label>
-          <Input name="address.complement" />
-          <label>Bairro</label>
-          <Input name="address.neighborhood" />
-          <label>Cidade</label>
-          <Input name="address.city" />
-          <label>Estado</label>
-          <Input name="address.state" />
-          <label>CEP</label>
-          <Input name="address.cep" />
-        </div>
+        <Scope path="address">
+          <div className="client-form">
+            <label>Rua</label>
+            <Input name="street" />
+            <label>Número</label>
+            <Input name="number" />
+            <label>Complemento</label>
+            <Input name="complement" />
+            <label>Bairro</label>
+            <Input name="neighborhood" />
+            <label>Cidade</label>
+            <Input name="city" />
+            <label>Estado</label>
+            <Input name="state" />
+            <label>CEP</label>
+            <Input name="cep" />
+          </div>
+        </Scope>
         <button type="submit" >Cadastrar</button>
       </Form>
     </div>

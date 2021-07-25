@@ -1,7 +1,7 @@
 import Address from "./Address";
 
 export default interface Client {
-  id: number;
+  id: String;
   name: String;
   email: String;
   telephone: number;

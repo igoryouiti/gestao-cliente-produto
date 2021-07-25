@@ -1,31 +1,72 @@
 import Client from "../models/Client";
-import Address from "../models/Address";
-
+import { nanoid } from 'nanoid';
 
 export default class ClientService {
 
-  createClient(client: Client) {
+  clientStorage = window.localStorage.get('clients');
 
+  createClient(client: Client) {
+    if (client === null)
+      return;
+
+    if (client.id === "")
+      client.id = nanoid();
+
+    if (this.clientStorage === null)
+      window.localStorage.set('clients', JSON.stringify(client));
+    else {
+      this.clientStorage.push(JSON.stringify(client));
+      window.localStorage.set('clients', localStorage);
+    }
   }
 
-  editClient(id: number) {
+  editClient(id: String, client: Client) {
+    if (client === null || this.clientStorage === null)
+      return
+
+    this.deleteClient(id);
+    this.createClient(client);
 
   }
 
   deleteAllClients() {
+    if (this.clientStorage === null)
+      return
+
+    window.localStorage.removeItem('clients');
+  }
+
+  deleteClient(id: String) {
+    if (id === null || this.clientStorage === null)
+      return
+
+    this.clientStorage.splice((this.clientStorage.findIndex((element: Client) => {
+      element.id === id
+    })));
+
+
 
   }
 
-  deleteClient(id: number) {
+  listAllClients(): Storage | String {
 
+    if (this.clientStorage === null)
+      return "Não existe clientes"
+
+    return this.clientStorage;
   }
 
-  listAllClients() {
+  listClient(id: string): Client | String {
 
-  }
+    let client: Client;
 
-  listClient(id: number) {
+    if (id === null || this.clientStorage === null)
+      return "Não existe clientes"
 
+    client = this.clientStorage.findIndex((element: Client) => {
+      element.id === id
+    });
+    return client;
   }
 
 
