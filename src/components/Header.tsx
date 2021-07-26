@@ -1,10 +1,19 @@
 import { useHistory } from 'react-router-dom';
+import ClientService from '../services/ClientService';
+import ProductService from '../services/ProductService';
 
 import '../styles/header.css';
 
 export default function Header() {
 
   const history = useHistory();
+  const productService = new ProductService();
+  const clientService = new ClientService();
+  function handleButtonDeleteAll() {
+    productService.deleteAllProducts();
+    clientService.deleteAllClients();
+    history.push('/');
+  }
 
   function handleButtonClients() {
     history.push('/clients/management');
@@ -20,7 +29,7 @@ export default function Header() {
       <div className="button-container">
         <button type="button" onClick={handleButtonClients}>Clientes</button>
         <button type="button" onClick={handleButtonProducts}>Produtos</button>
-        <button type="button">Apagar Tudo</button>
+        <button type="button" onClick={handleButtonDeleteAll}>Apagar Tudo</button>
       </div>
     </div >
   );

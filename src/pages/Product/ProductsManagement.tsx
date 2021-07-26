@@ -14,8 +14,11 @@ export default function ProductsManagement() {
 
   return (
     <div>
-      <button type="button" onClick={handleButtonCreateProduct}>Cadastrar</button>
-      <button type="button" onClick={handleButtonListProducts}>Listar</button>
+      <h1>Cliente</h1>
+      <div>
+        <button type="button" onClick={handleButtonCreateProduct}>Cadastrar</button>
+        <button type="button" onClick={handleButtonListProducts}>Listar</button>
+      </div>
     </div>
   );
 }
