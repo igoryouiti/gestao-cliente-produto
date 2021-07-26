@@ -11,7 +11,7 @@ Código fonte no github com o arquivo README detalhando as funcionalidades da pr
 
 Para inicia o projeto, dê um clone.
 
-yarn add
+yarn install
 
 yarn start
 
