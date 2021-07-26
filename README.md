@@ -17,7 +17,7 @@ yarn start
 
 ________________________
 
-endereço netlify: 
+endereço netlify: https://60fe14686a695572825739d6--hardcore-goldstine-2fac27.netlify.app/
 
 
 __________
