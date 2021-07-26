@@ -3,24 +3,35 @@ import { nanoid } from 'nanoid';
 
 export default class ClientService {
 
-  clientStorage = window.localStorage.get('clients');
+  clientStorage = window.localStorage.getItem('clients')
 
   createClient(client: Client) {
     if (client === null)
       return;
 
-    if (client.id === "")
+    if (!client.id)
       client.id = nanoid();
 
-    if (this.clientStorage === null)
-      window.localStorage.set('clients', JSON.stringify(client));
-    else {
-      this.clientStorage.push(JSON.stringify(client));
-      window.localStorage.set('clients', localStorage);
+    if (!client.address.id)
+      client.address.id = nanoid();
+
+    let storage = [];
+
+    if (this.clientStorage === null) {
+      storage.push(client);
+      window.localStorage.setItem('clients', JSON.stringify(storage));
+
+    } else {
+      let parsedClientStorage = JSON.parse(this.clientStorage)
+      storage.push(client);
+      parsedClientStorage.map((e: Client) => {
+        return storage.push(e);
+      });
+      window.localStorage.setItem('clients', JSON.stringify(storage));
     }
   }
 
-  editClient(id: String, client: Client) {
+  editClient(id: string, client: Client) {
     if (client === null || this.clientStorage === null)
       return
 
@@ -36,36 +47,56 @@ export default class ClientService {
     window.localStorage.removeItem('clients');
   }
 
-  deleteClient(id: String) {
+  deleteClient(id: string) {
     if (id === null || this.clientStorage === null)
       return
 
-    this.clientStorage.splice((this.clientStorage.findIndex((element: Client) => {
-      element.id === id
-    })));
+    let parsedClientStorage = JSON.parse(this.clientStorage)
+    let storage: Array<Client> = [];
+    parsedClientStorage.map((e: Client) => {
+      return storage.push(e);
+    });
 
+    let index: number = storage.findIndex((element: Client) => {
+      return element.id === id
+    })
 
+    if (index > -1)
+      storage.splice(index, 1);
 
+    window.localStorage.setItem('clients', JSON.stringify(storage));
   }
 
-  listAllClients(): Storage | String {
+  listAllClients(): [] | String {
 
     if (this.clientStorage === null)
       return "Não existe clientes"
 
-    return this.clientStorage;
+    return JSON.parse(this.clientStorage);
   }
 
-  listClient(id: string): Client | String {
-
-    let client: Client;
+  listClient(id: string): Record<string, any> {
 
     if (id === null || this.clientStorage === null)
-      return "Não existe clientes"
+      return ({ message: "error" })
 
-    client = this.clientStorage.findIndex((element: Client) => {
-      element.id === id
+    let parsedClientStorage = JSON.parse(this.clientStorage)
+    let storage: Array<Client> = [];
+    parsedClientStorage.map((e: Client) => {
+      return storage.push(e);
     });
+
+    let client: Client | undefined;
+
+    client = storage.find((element: Client) => {
+      return element.id === id
+    });
+
+    if (client === undefined)
+      return { message: "não existe este cliente" }
+
+    console.log("Client no service: " + client)
+
     return client;
   }
 

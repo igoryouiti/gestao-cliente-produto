@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ClientManagement from './pages/Client/ClientManagement';
 import ProductsManagement from './pages/Product/ProductsManagement';
-import ListClients from './pages/Client/ListClients';
+import Clients from './pages/Client/Clients';
 import ListProducts from './pages/Product/ListProducts';
 import Product from './pages/Product/Product';
 import EditProduct from './pages/Product/EditProduct';
@@ -22,11 +22,11 @@ export default function Routes() {
         <Route path="/products" component={ListProducts} />
         <Route path="/product" exact component={Product} />
         <Route path="/product/create" component={CreateProduct} />
-        <Route path="/product/edit" component={EditProduct} />
-        <Route path="/clients" component={ListClients} />
+        <Route path="/product/:id/edit" component={EditProduct} />
+        <Route path="/clients" component={Clients} />
         <Route path="/client" exact component={Client} />
         <Route path="/client/create" component={CreateClient} />
-        <Route path="/client/edit" component={EditClient} />
+        <Route path="/client/:id/edit" component={EditClient} />
       </Switch>
     </BrowserRouter>
   );

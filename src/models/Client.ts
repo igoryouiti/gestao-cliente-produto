@@ -1,11 +1,11 @@
 import Address from "./Address";
 
 export default interface Client {
-  id: String;
-  name: String;
-  email: String;
+  id: string;
+  name: string;
+  email: string;
   telephone: number;
-  birthday: String;
+  birthday: string;
   cpf: number;
   address: Address;
 }

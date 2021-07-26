@@ -3,18 +3,24 @@ import { SubmitHandler, FormHandles, Scope } from '@unform/core'
 import { Form } from '@unform/web';
 import Client from '../../models/Client';
 import Input from '../../components/Form/Input';
+import ClientService from '../../services/ClientService';
+import { useHistory } from 'react-router-dom';
 
 
 
 export default function CreateClient() {
-
+  const history = useHistory();
   const formRef = useRef<FormHandles>(null)
 
   const handleSubmit: SubmitHandler<Client> = (data) => {
-    console.log(data)
     const client: Client = data;
 
-    console.log(client)
+    const service = new ClientService();
+
+    service.createClient(client);
+
+    history.push('/clients');
+
   }
 
   return (
@@ -23,32 +29,32 @@ export default function CreateClient() {
       <Form ref={formRef} onSubmit={handleSubmit}>
         <div className="client-form">
           <label>Nome</label>
-          <Input name="name" />
+          <Input required={true} name="name" />
           <label>E-mail</label>
-          <Input type="email" name="email" />
+          <Input required={true} type="email" name="email" />
           <label>Telefone</label>
-          <Input name="telephone" />
+          <Input required={true} name="telephone" />
           <label>Data Nascimento</label>
-          <Input type="date" name="birthday" />
+          <Input required={true} type="date" name="birthday" />
           <label>CPF</label>
-          <Input name="cpf" />
+          <Input required={true} name="cpf" />
         </div>
         <Scope path="address">
           <div className="client-form">
             <label>Rua</label>
-            <Input name="street" />
+            <Input required={true} name="street" />
             <label>Número</label>
             <Input name="number" />
             <label>Complemento</label>
-            <Input name="complement" />
+            <Input required={true} name="complement" />
             <label>Bairro</label>
-            <Input name="neighborhood" />
+            <Input required={true} name="neighborhood" />
             <label>Cidade</label>
-            <Input name="city" />
+            <Input required={true} name="city" />
             <label>Estado</label>
-            <Input name="state" />
+            <Input required={true} name="state" />
             <label>CEP</label>
-            <Input name="cep" />
+            <Input required={true} name="cep" />
           </div>
         </Scope>
         <button type="submit" >Cadastrar</button>

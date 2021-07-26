@@ -14,8 +14,11 @@ export default function ClientManagement() {
 
   return (
     <div>
-      <button type="button" onClick={handleButtonCreateClient}>Cadastrar</button>
-      <button type="button" onClick={handleButtonListClients}>Listar</button>
+      <h1>Cliente</h1>
+      <div>
+        <button type="button" onClick={handleButtonCreateClient}>Cadastrar</button>
+        <button type="button" onClick={handleButtonListClients}>Listar</button>
+      </div>
     </div>
   );
 }
