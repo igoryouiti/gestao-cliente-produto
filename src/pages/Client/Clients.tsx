@@ -3,9 +3,6 @@ import { useHistory } from "react-router-dom";
 import ClientService from "../../services/ClientService";
 import Client from '../../models/Client';
 
-
-
-
 export default function Clients() {
 
   const history = useHistory();

@@ -1,5 +1,4 @@
-import { useRef } from 'react'
-import { SubmitHandler, FormHandles, Scope } from '@unform/core'
+import { SubmitHandler, Scope } from '@unform/core'
 import { Form } from '@unform/web';
 import Client from '../../models/Client';
 import Input from '../../components/Form/Input';
@@ -10,7 +9,6 @@ import { useHistory } from 'react-router-dom';
 
 export default function CreateClient() {
   const history = useHistory();
-  const formRef = useRef<FormHandles>(null)
 
   const handleSubmit: SubmitHandler<Client> = (data) => {
     const client: Client = data;
@@ -19,14 +17,14 @@ export default function CreateClient() {
 
     service.createClient(client);
 
-    history.push('/clients');
+    history.push('/clients/management');
 
   }
 
   return (
     <div>
       Cadastro Cliente
-      <Form ref={formRef} onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <div className="client-form">
           <label>Nome</label>
           <Input required={true} name="name" />

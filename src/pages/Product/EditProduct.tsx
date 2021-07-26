@@ -1,29 +1,47 @@
-import { FormHandles, SubmitHandler } from '@unform/core';
+import { SubmitHandler } from '@unform/core';
 import { Form } from '@unform/web';
-import { useRef } from 'react';
-import ImageInput from '../../components/Form/ImageInput';
+import { useHistory, useParams } from 'react-router-dom';
 import Input from '../../components/Form/Input';
 import Product from '../../models/Product';
+import ProductService from '../../services/ProductService';
 
 export default function EditProduct() {
-  const formRef = useRef<FormHandles>(null)
+  const history = useHistory();
+
+  type Id = {
+    id: string;
+  };
+
+  const { id } = useParams<Id>();
+
+  const service = new ProductService();
+  const product: Record<string, any> = service.listProduct(id);
+
+  console.log(product);
+
+  const initialData: Record<string, any> = product;
+
   const handleSubmit: SubmitHandler<Product> = data => {
-    console.log(data)
+    const product: Product = data;
+
+    product.id = id
+
+    service.editProduct(id, product);
+
+    history.push('/products/management');
   }
 
   return (
     <div>
       Cadastro Produto
-      <Form onSubmit={handleSubmit}>
+      <Form initialData={initialData} onSubmit={handleSubmit}>
         <label>Nome: </label>
         <Input name="name" />
         <label>Descrição: </label>
         <Input name="description" />
         <label>Fornecedor: </label>
         <Input name="provider" />
-        <label>Imagem: </label>
-        <ImageInput name="imageAddress" />
-        <button>Cadastrar</button>
+        <button>Editar</button>
       </Form>
     </div>
   );

@@ -3,9 +3,7 @@ import ClientManagement from './pages/Client/ClientManagement';
 import ProductsManagement from './pages/Product/ProductsManagement';
 import Clients from './pages/Client/Clients';
 import ListProducts from './pages/Product/ListProducts';
-import Product from './pages/Product/Product';
 import EditProduct from './pages/Product/EditProduct';
-import Client from './pages/Client/Client';
 import EditClient from './pages/Client/EditClient';
 import Header from './components/Header';
 import CreateClient from './pages/Client/CreateClient';
@@ -20,11 +18,9 @@ export default function Routes() {
         <Route path="/clients/management" component={ClientManagement} />
         <Route path="/products/management" component={ProductsManagement} />
         <Route path="/products" component={ListProducts} />
-        <Route path="/product" exact component={Product} />
         <Route path="/product/create" component={CreateProduct} />
         <Route path="/product/:id/edit" component={EditProduct} />
         <Route path="/clients" component={Clients} />
-        <Route path="/client" exact component={Client} />
         <Route path="/client/create" component={CreateClient} />
         <Route path="/client/:id/edit" component={EditClient} />
       </Switch>
